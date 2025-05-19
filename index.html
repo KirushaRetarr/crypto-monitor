@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>КриптоМонитор - Продвинутая Платформа Мониторинга Криптовалют</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { primary: '#15B8A6', secondary: '' }, borderRadius: { 'none': '0px', 'sm': '4px', DEFAULT: '8px', 'md': '12px', 'lg': '16px', 'xl': '20px', '2xl': '24px', '3xl': '32px', 'full': '9999px', 'button': '8px' } } } }</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #f9fafb 0%, #e5f7f6 100%);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #15B8A6;
+            box-shadow: 0 0 0 3px rgba(21, 184, 166, 0.2);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .custom-checkbox {
+            position: relative;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #d1d5db;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .custom-checkbox.checked {
+            background-color: #15B8A6;
+            border-color: #15B8A6;
+        }
+
+        .custom-checkbox.checked::after {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 2px;
+            width: 6px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+
+<body class="bg-white min-h-screen">
+    <!-- Header Section -->
+    <header class="w-full bg-white shadow-sm fixed top-0 left-0 right-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <span class="text-2xl font-['Pacifico'] text-gray-800"><img src="img/logo.svg" alt="Логотип" class="h-14"></span>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#features" class="text-gray-600 hover:text-primary transition-colors">Возможности</a>
+                <a href="#register" class="text-gray-600 hover:text-primary transition-colors">Ранний Доступ</a>
+                <a href="#testimonials" class="text-gray-600 hover:text-primary transition-colors">Отзывы</a>
+                <a href="#trust" class="text-gray-600 hover:text-primary transition-colors">Безопасность</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <a href="#register" class="bg-primary text-white px-5 py-2 !rounded-button font-medium hover:bg-opacity-90 transition-colors whitespace-nowrap">Начать</a>
+                <button id="theme-toggle" class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors">
+                    <i class="ri-sun-line text-gray-600"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+    <!-- Hero Section -->
+    <section class="pt-28 pb-16 relative overflow-hidden w-full"
+        style="background-image: url('https://readdy.ai/api/search-image?query=A%20professional%20cryptocurrency%20dashboard%20with%20charts%20and%20graphs%20on%20a%20gradient%20blue%20background.%20The%20left%20side%20should%20be%20lighter%20and%20blend%20well%20with%20text%2C%20while%20the%20right%20side%20shows%20detailed%20crypto%20analytics%20visualizations.%20Modern%2C%20clean%20design%20with%20subtle%20grid%20lines%20and%20glowing%20elements.%20The%20image%20should%20have%20a%20professional%20look%20suitable%20for%20a%20financial%20tech%20platform.&width=1920&height=1080&seq=hero1&orientation=landscape'); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="w-full md:w-1/2 lg:w-5/12">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">Мониторинг Крипторынков в
+                    Реальном Времени</h1>
+                <p class="text-lg text-gray-700 mb-8">Будьте впереди рыночных трендов с продвинутой аналитикой,
+                    персонализированными оповещениями и комплексным отслеживанием портфеля - всё в одной мощной
+                    платформе.</p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#register"
+                        class="bg-primary text-white px-8 py-3 !rounded-button font-medium hover:bg-opacity-90 transition-colors text-center whitespace-nowrap">Начать
+                        Мониторинг</a>
+                    <a href="#demo"
+                        class="bg-white text-gray-800 border border-gray-300 px-8 py-3 !rounded-button font-medium hover:bg-gray-50 transition-colors text-center whitespace-nowrap">Смотреть
+                        Демо</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Features Section -->
+    <section id="features" class="py-20 gradient-bg">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Мощные Инструменты Мониторинга</h2>
+                <p class="text-lg text-gray-700 max-w-3xl mx-auto">Наша платформа предоставляет комплексные решения для
+                    мониторинга криптовалют, помогая вам принимать обоснованные решения.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-white p-8 rounded-lg shadow-md transition-all duration-300 feature-card">
+                    <div class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+                        <i class="ri-line-chart-line ri-2x text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Аналитика в Реальном Времени</h3>
+                    <p class="text-gray-600">Отслеживайте движения цен, объемы торгов и рыночные тренды с миллисекундной
+                        точностью.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="bg-white p-8 rounded-lg shadow-md transition-all duration-300 feature-card">
+                    <div class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+                        <i class="ri-notification-4-line ri-2x text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Настраиваемые Оповещения</h3>
+                    <p class="text-gray-600">Установите персонализированные уведомления о ценах для ваших любимых
+                        криптовалют на всех устройствах.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="bg-white p-8 rounded-lg shadow-md transition-all duration-300 feature-card">
+                    <div class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+                        <i class="ri-wallet-3-line ri-2x text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Отслеживание Портфеля</h3>
+                    <p class="text-gray-600">Контролируйте весь ваш криптопортфель с детальными показателями
+                        эффективности и историческим анализом.</p>
+                </div>
+                <!-- Feature 4 -->
+                <div class="bg-white p-8 rounded-lg shadow-md transition-all duration-300 feature-card">
+                    <div class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+                        <i class="ri-ai-generate-line ri-2x text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Аналитика на Базе ИИ</h3>
+                    <p class="text-gray-600">Используйте алгоритмы машинного обучения для выявления потенциальных
+                        рыночных возможностей и рисков.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Application Form Section -->
+    <section id="register" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-2">
+                        <div class="p-10 flex items-center"
+                            style="background-image: url('https://readdy.ai/api/search-image?query=A%20sleek%2C%20modern%20cryptocurrency%20visualization%20with%20glowing%20blue%20and%20teal%20elements.%20The%20image%20shows%20abstract%20digital%20charts%2C%20graphs%2C%20and%20crypto%20symbols%20against%20a%20dark%20background.%20Professional%20financial%20technology%20aesthetic%20with%20clean%20lines%20and%20a%20futuristic%20feel.%20The%20visualization%20should%20look%20sophisticated%20and%20trustworthy%20for%20a%20crypto%20monitoring%20platform.&width=800&height=1000&seq=form1&orientation=portrait'); background-size: cover; background-position: center;">
+                            <div class="bg-black/50 p-8 rounded-lg backdrop-blur-sm">
+                                <h3 class="text-2xl font-bold text-white mb-4">Присоединяйтесь к Тысячам Трейдеров</h3>
+                                <p class="text-white/90 mb-6">Получите ранний доступ к нашей продвинутой платформе
+                                    мониторинга криптовалют и будьте впереди рыночных движений.</p>
+                                <div class="flex items-center space-x-4 mb-3">
+                                    <div class="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center">
+                                        <i class="ri-check-line text-primary"></i>
+                                    </div>
+                                    <span class="text-white">Данные рынка в реальном времени</span>
+                                </div>
+                                <div class="flex items-center space-x-4 mb-3">
+                                    <div class="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center">
+                                        <i class="ri-check-line text-primary"></i>
+                                    </div>
+                                    <span class="text-white">Персонализированная панель управления</span>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center">
+                                        <i class="ri-check-line text-primary"></i>
+                                    </div>
+                                    <span class="text-white">Приоритетная поддержка</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-10">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Получить Ранний Доступ</h3>
+                            <p class="text-gray-600 mb-8">Заполните форму ниже, чтобы присоединиться к листу ожидания.
+                            </p>
+                            <form id="registration-form" class="space-y-6">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Полное
+                                        Имя</label>
+                                    <div class="relative">
+                                        <div
+                                            class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <i class="ri-user-line text-gray-400"></i>
+                                        </div>
+                                        <input type="text" id="name" name="name"
+                                            class="form-input w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg text-gray-800"
+                                            placeholder="Введите ваше имя" required>
+                                    </div>
+                                    <p id="name-error" class="mt-1 text-sm text-red-600 hidden">Пожалуйста, введите ваше
+                                        имя</p>
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email
+                                        Адрес</label>
+                                    <div class="relative">
+                                        <div
+                                            class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <i class="ri-mail-line text-gray-400"></i>
+                                        </div>
+                                        <input type="email" id="email" name="email"
+                                            class="form-input w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg text-gray-800"
+                                            placeholder="Введите ваш email" required>
+                                    </div>
+                                    <p id="email-error" class="mt-1 text-sm text-red-600 hidden">Пожалуйста, введите
+                                        корректный email адрес</p>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="flex items-center h-5">
+                                        <div id="terms-checkbox" class="custom-checkbox cursor-pointer"></div>
+                                    </div>
+                                    <div class="ml-3 text-sm">
+                                        <label for="terms" class="font-medium text-gray-700">Я согласен с <a href="#"
+                                                class="text-primary hover:underline">Условиями использования</a> и <a
+                                                href="#" class="text-primary hover:underline">Политикой
+                                                конфиденциальности</a></label>
+                                    </div>
+                                </div>
+                                <button type="submit" id="submit-btn"
+                                    class="w-full bg-primary text-white py-3 !rounded-button font-medium hover:bg-opacity-90 transition-colors whitespace-nowrap">Присоединиться
+                                    к Листу Ожидания</button>
+                            </form>
+                            <div id="success-message"
+                                class="mt-6 p-4 bg-green-100 border border-green-200 text-green-800 rounded-lg hidden">
+                                <div class="flex">
+                                    <div class="flex-shrink-0">
+                                        <i class="ri-check-line ri-lg"></i>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-sm font-medium">Спасибо за регистрацию! Мы скоро свяжемся с вами.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <!-- Trust Indicators Section -->
+    <section id="trust" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Нам Доверяют Криптоэнтузиасты по Всему Миру</h2>
+                <p class="text-lg text-gray-700 max-w-3xl mx-auto">Присоединяйтесь к тысячам трейдеров, которые
+                    полагаются на нашу платформу для точного мониторинга криптовалют в реальном времени.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <div class="text-4xl font-bold text-primary mb-2">25K+</div>
+                    <p class="text-gray-600">Активных Пользователей</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <div class="text-4xl font-bold text-primary mb-2">500+</div>
+                    <p class="text-gray-600">Поддерживаемых Криптовалют</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <div class="text-4xl font-bold text-primary mb-2">99.9%</div>
+                    <p class="text-gray-600">Надежность Работы</p>
+                </div>
+            </div>
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16">
+                <div class="flex items-center justify-center">
+                    <i class="ri-shield-check-fill ri-2x text-gray-400"></i>
+                    <span class="ml-2 text-gray-600 font-medium">256-битное Шифрование</span>
+                </div>
+                <div class="flex items-center justify-center">
+                    <i class="ri-lock-fill ri-2x text-gray-400"></i>
+                    <span class="ml-2 text-gray-600 font-medium">Соответствие SOC 2</span>
+                </div>
+                <div class="flex items-center justify-center">
+                    <i class="ri-secure-payment-fill ri-2x text-gray-400"></i>
+                    <span class="ml-2 text-gray-600 font-medium">Сертификация PCI DSS</span>
+                </div>
+                <div class="flex items-center justify-center">
+                    <i class="ri-database-2-fill ri-2x text-gray-400"></i>
+                    <span class="ml-2 text-gray-600 font-medium">Соответствие GDPR</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Что Говорят Наши Пользователи</h2>
+                <p class="text-lg text-gray-700 max-w-3xl mx-auto">Отзывы трейдеров, которые трансформировали свою
+                    стратегию инвестирования в криптовалюты с помощью нашей платформы.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-8 rounded-lg shadow-md border border-gray-100">
+                    <div class="flex items-center mb-4">
+                        <div class="text-primary">
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6">"Эта платформа полностью изменила то, как я отслеживаю свои
+                        криптоинвестиции. Оповещения в реальном времени помогли мне уловить несколько движений рынка,
+                        которые я бы иначе пропустил."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
+                            <i class="ri-user-3-line text-gray-500"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-semibold text-gray-900">Михаил Томпсон</h4>
+                            <p class="text-sm text-gray-500">Криптотрейдер, Лондон</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-8 rounded-lg shadow-md border border-gray-100">
+                    <div class="flex items-center mb-4">
+                        <div class="text-primary">
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6">"Функции отслеживания портфеля исключительны. Наконец-то я могу видеть
+                        все свои криптоактивы в одном месте с детальной аналитикой, которая помогает принимать лучшие
+                        инвестиционные решения."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
+                            <i class="ri-user-3-line text-gray-500"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-semibold text-gray-900">София Родригес</h4>
+                            <p class="text-sm text-gray-500">Инвестиционный Консультант, Нью-Йорк</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-8 rounded-lg shadow-md border border-gray-100">
+                    <div class="flex items-center mb-4">
+                        <div class="text-primary">
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-half-fill"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6">"Как новичку в криптотрейдинге, эта платформа оказалась бесценной.
+                        Интерфейс интуитивно понятен, а образовательные ресурсы помогли мне понять рыночные тренды."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
+                            <i class="ri-user-3-line text-gray-500"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-semibold text-gray-900">Давид Чен</h4>
+                            <p class="text-sm text-gray-500">Технологический Предприниматель, Сингапур</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+                <div class="lg:col-span-2">
+                    <a href="admin/admin.html" class="text-2xl font-['Pacifico'] text-white mb-4 inline-block"><img
+                            src="img/logo.svg" alt="Логотип" class="h-10"></a>
+                    <p class="text-gray-400 mb-6 max-w-md">Advanced cryptocurrency monitoring platform providing
+                        real-time data, custom alerts, and comprehensive portfolio tracking for traders worldwide.</p>
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                            <i class="ri-twitter-x-line text-white"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                            <i class="ri-facebook-fill text-white"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                            <i class="ri-linkedin-fill text-white"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                            <i class="ri-instagram-line text-white"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Компания</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">О Нас</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Карьера</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Пресса</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Блог</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Контакты</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Ресурсы</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Документация</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Центр Помощи</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">API</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Сообщество</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Партнеры</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Юридическая Информация</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Политика
+                                Конфиденциальности</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Условия
+                                Использования</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Политика Использования
+                                Cookies</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Безопасность</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Соответствие
+                                Требованиям</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 mb-4 md:mb-0">&copy; 2025 КриптоМонитор. Все права защищены.</p>
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center">
+                            <i class="ri-visa-line ri-lg text-gray-400"></i>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="ri-mastercard-line ri-lg text-gray-400"></i>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="ri-paypal-line ri-lg text-gray-400"></i>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="ri-apple-fill ri-lg text-gray-400"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('registration-form');
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const termsCheckbox = document.getElementById('terms-checkbox');
+            const submitBtn = document.getElementById('submit-btn');
+            const successMessage = document.getElementById('success-message');
+            const nameError = document.getElementById('name-error');
+            const emailError = document.getElementById('email-error');
+
+            // Обработка клика по чекбоксу
+            termsCheckbox.addEventListener('click', function () {
+                if (this.classList.contains('checked')) {
+                    this.classList.remove('checked');
+                } else {
+                    this.classList.add('checked');
+                }
+            });
+
+            // Обработка отправки формы
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                // Сброс ошибок
+                nameError.classList.add('hidden');
+                emailError.classList.add('hidden');
+                successMessage.classList.add('hidden');
+
+                // Валидация
+                let isValid = true;
+
+                if (!nameInput.value.trim()) {
+                    nameError.classList.remove('hidden');
+                    isValid = false;
+                }
+
+                const emailValue = emailInput.value.trim();
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(emailValue)) {
+                    emailError.classList.remove('hidden');
+                    isValid = false;
+                }
+
+                if (!termsCheckbox.classList.contains('checked')) {
+                    alert('Пожалуйста, согласитесь с условиями использования и Политикой конфиденциальности');
+                    return; // Не отправлять форму!
+                }
+
+                if (!isValid) return;
+
+                // Имитация успешной подписки
+                form.classList.add('hidden');
+                successMessage.classList.remove('hidden');
+            });
+        });
+    </script>
+</body>
+
+</html>
